@@ -45,7 +45,23 @@ def greet_person():
 def show_madlib_form():
     """Choose to play the game"""
 
-    play_game = request.args.get("play game")
+    play_game = request.args.get("play_our_game") #pulling name from compliment
+    #person_name = request.args.get("person")
+    player = request.args.get("person")
+    
+    if play_game == "yes":
+        return render_template("game.html") #pulling value from name in compliment
+    else:
+        return render_template("goodbye.html", person=player)
+
+@app.route('/madlib')
+def show_madlib():
+
+    color = request.args.get("color")
+    noun = request.args.get("noun")
+    adjective = request.args.get("adjective")
+
+    return render_template("madlib.html", color=color, noun=noun, adjective=adjective)
 
 
 
